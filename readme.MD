@@ -1,9 +1,3 @@
-after eks cluster creation, create one more job for configure cluster like rds db user creation, 
-
-namespace creation,aws load balancer controller creation
-
-environment pause
-
 scanning (shift left)
 -----------------
 
