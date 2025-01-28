@@ -123,16 +123,16 @@ apply plugin: "com.srcclr.gradle"
 
   srcclr {     apiToken = {api_key}   } //which is  generated in Agent-Based Scan tab
 
+```
+./gradlew clean build srcclr  will give you secuity vulnerabilities list in tabular form
 
-  ./gradlew clean build srcclr  will give you secuity vulnerabilities list in tabular form
-
-
+```
 
 while running the above command if you get "PKIX path building failed" and "unable to find valid certification path to requested target", 
 
  import the veracode cer file into cacerts in command line and rerun the above command.
 
-
+This is a Veracode Software Composition Analysis (SCA) report output for a Gradle-based project, identifying open-source dependencies and vulnerabilities.
 
 > Task :srcclrEvidence
 [srcclr] Generated dependency graphs for 2 modules
@@ -140,6 +140,9 @@ while running the above command if you get "PKIX path building failed" and "unab
 
 > Task :srcclr
 [srcclr] Performing vulnerable methods scan at C:\Users\sputcha\IdeaProjects\security-service-veracode
+
+
+```
 Summary Report
 Scan ID                                   c8b2fc07-9a18-4bcf-a1d4-9a4cb8599462
 Scan Date & Time                          May 30 2023 11:27PM IST
@@ -164,6 +167,7 @@ Medium Risk Vulnerabilities               43
 Low Risk Vulnerabilities                  3
 
 Vulnerabilities - Public Data
+
 CVE-2021-22047                            High Risk       Security Restriction Bypass               spring-boot-actuator 2.2.6.RELEASE
 CVE-2022-1471                             High Risk       Remote Code Execution (RCE)               SnakeYAML 1.26
 CVE-2022-22963                            High Risk       Remote Code Execution                     spring-cloud-function-context 3.0.3.RELEASE
@@ -191,5 +195,5 @@ CVE-2022-38749                            Medium Risk     Denial Of Service (DoS
 CVE-2022-38751                            Medium Risk     Denial Of Service (DoS)                   SnakeYAML 1.26
 CVE-2022-38752                            Medium Risk     Denial Of Service (DoS)                   SnakeYAML 1.26
 CVE-2021-42550                            Medium Risk     Remote Code Execution (RCE)               Logback Core Module 1.2.3
-
+```
 Ref: https://docs.veracode.com/r/t_sc_gradle
