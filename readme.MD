@@ -5,9 +5,13 @@ shifting the security scanning and testing in development before pushing the cod
 push code to feature branches, we should scan and run unit test cases
 
 static source code analysis --> sonarqube
+
 static applicaitoion security testing --> sonarqube
+
 dynamic application security tsting --> veracode SAST (Static Application Security Testing) and DAST (Dynamic Application Security Testing)
+
 open source library scan --> nexus IQ
+
 image scanning --> ECR scan
 
 # SAST (Static Application Security Testing)
