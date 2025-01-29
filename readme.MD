@@ -1,3 +1,23 @@
+# sonarqube
+
+use existing sonar qube AMI SonarQube CE on AWS 
+
+instace type: t3.medium
+
+key pair: use key
+
+sg: allow_ssh
+
+volume: 30 Gb
+
+after launching the ec2 instance, sonarqube server will be up
+
+http://<ip-address>/9000  it will open sonarqube login page
+
+Username: admin
+password: instance_id/admin
+
+
 scanning (shift left)
 -----------------
 
@@ -10,7 +30,7 @@ static applicaitoion security testing --> sonarqube
 
 dynamic application security tsting --> veracode SAST (Static Application Security Testing) and DAST (Dynamic Application Security Testing)
 
-open source library scan --> nexus IQ
+open source library scan --> veracode
 
 image scanning --> ECR scan
 
@@ -84,7 +104,95 @@ AppSpider
 
 # sonarqube 
 
+```
+buildScript{
+    repositories {
+        mavenLocal()
+        maven { url "$nexusUrl/content/groups/public/" }
+    }
+    dependentices {
+        ..........
+        classpath "org.sonarsource.scaaner.gradle:sonarqube-gradle-plugin:2.6.1"
+        ...........
+        .........
 
+    }
+}
+apply plugin: 'org.sonarqube'
+
+sonarQube {
+    properties {
+        property "sonqr.dynamicAnalysis", "reuseReports"
+        property "sonar.clover.reportPath", "${Project.reporting.baseDir}/clover/clover.xml"
+        property "sonar.coverage.exclusions", ['**/gensrc/**/*.java',
+                                               '**/config/*.java....]
+    }
+}
+
+```
+
+```
+systemProp.sonar.host.url = https://sonarqube.infra.devsecmlops.online
+systemProp.sonar.jdbc.dirverClassName = com.mysql.jdbc.Driver
+systemProp.sonar.dynamic=reuseReports
+systemProp.sonar.jbdc.url=jdbc:mysql://maven.infra.devsecmlops.online:3306/sonar-db?useunicode=true&amp;charcterEncoding=utf8
+systemProp.sonar.jdbc.username=sonar
+systemProp.sonar.jdbc.password=sonar
+```
+
+```
+plugins {
+    id "org.springframework.boot" version "3.1.5"
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+    id "java"
+    id "jacoco"
+    id "org.sonarqube" version "3.3"
+}
+
+group = "com.example"
+version = "0.0.1-SNAPSHOT"
+sourceCompatibility = "11"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter"
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport // Generate Jacoco report after tests run
+}
+
+jacocoTestReport {
+    dependsOn test // Tests are required to run before generating the report
+    reports {
+        xml.required = true
+        html.required = true
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "your_project_key"
+        property "sonar.host.url", "http://localhost:9000"
+        property "sonar.login", "your_sonarqube_token"
+        property "sonar.java.binaries", "${project.buildDir}/classes/java/main"
+        property "sonar.sources", "src/main/java"
+        property "sonar.tests", "src/test/java"
+        property "sonar.junit.reportPaths", "${project.buildDir}/test-results/test"
+        property "sonar.jacoco.reportPaths", "${project.buildDir}/jacoco/test.exec"
+        property "sonar.coverage.exclusions", [
+            '**/gensrc/**/*.java',
+            '**/config/*.java'
+        ]
+    }
+}
+```
 
 
 # Veracode SCA Report for spring boot micro service
