@@ -12,10 +12,43 @@ volume: 30 Gb
 
 after launching the ec2 instance, sonarqube server will be up
 
-http://<ip-address>/9000  it will open sonarqube login page
+create r53 records for public and private Ips
 
-Username: admin
-password: instance_id/admin
+http://sonar.devsecmlops.online:9000  it will open sonarqube login page
+
+![alt text](sonar_scanner.drawio.svg)
+
+Add SonarQube scanner plugin and configure it under tools:
+
+![alt text](image-4.png)
+
+Generate Token in SonarQube server:
+
+![alt text](image-5.png)
+
+
+Configure sonarqube server in Jenkins server :
+
+sonar-validate-token must be configured as secret text.
+
+![alt text](image-7.png)
+
+![alt text](image-3.png)
+
+Ref: https://callmezydd.medium.com/unlocking-code-quality-integrating-jenkins-pipeline-with-sonarqube-and-github-7f450f1c90ab
+
+# Created INFRA to deploy serivces on EKS cluster
+
+![alt text](image-2.png)
+
+
+Quality profiles:
+
+![alt text](image-1.png)
+
+set of active rules for java languague given by Sonarqube.
+
+![alt text](image.png)
 
 
 scanning (shift left)

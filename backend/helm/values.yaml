@@ -1,0 +1,12 @@
+configMap: 
+  db_host: ""
+deployment:
+  image:
+    prefix: ""
+    tag: ""
+  replicaCount: 2
+service:
+  type: LoadBalancer
+
+hpa:
+  targetCPUUtilizationPercentage: 15

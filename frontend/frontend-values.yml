@@ -1,0 +1,13 @@
+deployment:
+  image:
+    prefix: 528757792370.dkr.ecr.us-east-1.amazonaws.com/expense/dev/frontend
+    tag: ""
+  replicaCount: 2
+service:
+  type: LoadBalancer
+
+hpa:
+  targetCPUUtilizationPercentage: 15
+
+tgb:
+  arn: arn:aws:elasticloadbalancing:us-east-1:528757792370:targetgroup/expense-dev/1c9698ad259525ab

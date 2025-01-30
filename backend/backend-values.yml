@@ -1,0 +1,12 @@
+configMap: 
+  db_host: "expense-dev.cn6mc26ic8xb.us-east-1.rds.amazonaws.com"
+deployment:
+  image:
+    prefix: 528757792370.dkr.ecr.us-east-1.amazonaws.com/expense/dev/backend
+    tag: ""
+  replicaCount: 2
+service:
+  type: LoadBalancer
+
+hpa:
+  targetCPUUtilizationPercentage: 15

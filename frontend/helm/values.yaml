@@ -1,0 +1,9 @@
+deployment:
+  image:
+    tag: v7
+  replicaCount: 2
+service:
+  type: LoadBalancer
+
+hpa:
+  targetCPUUtilizationPercentage: 15
