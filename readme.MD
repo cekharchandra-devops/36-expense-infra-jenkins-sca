@@ -35,6 +35,27 @@ sonar-validate-token must be configured as secret text.
 
 ![alt text](image-3.png)
 
+
+# Add SonarQube Analysis stage in jenkinsfile for backend service and Build and Deploy backend service through Jenkins
+
+
+a new Quality Gate is created for the services for overall code and new code
+
+issues -0, 0 bugs, secuity rating must be A, manintainability rating A, code coverage not less than 80%
+code smells 0 vulnarabilities 0
+
+![alt text](image-10.png)
+
+![alt text](image-9.png)
+
+![alt text](image-8.png)
+
+configure webhook at sonarqube server
+
+![alt text](image-11.png)
+
+![alt text](image-12.png)
+
 Ref: https://callmezydd.medium.com/unlocking-code-quality-integrating-jenkins-pipeline-with-sonarqube-and-github-7f450f1c90ab
 
 # Created INFRA to deploy serivces on EKS cluster
